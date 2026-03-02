@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from datetime import datetime, timezone, timedelta
 
 IST = timezone(timedelta(hours=5, minutes=30))
+UTC = timezone.utc
 load_dotenv()
 
 app = Flask(__name__)
@@ -123,10 +124,19 @@ def menu():
         items = []
         categories = []
     return render_template("menu.html", items=items, categories=categories)
+
 @app.route("/contact_messages")
 def contact_messages():
-    messages=list(collection_contact.find())
-    return render_template("contact_messages.html",messages=messages)
+    messages = list(collection_contact.find().sort("date", -1))
+    for msg in messages:
+        if msg.get("date"):
+            dt = msg["date"]
+            # If naive (no timezone) = old UTC record, make it UTC-aware first
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=UTC)
+            # Convert to IST
+            msg["date"] = dt.astimezone(IST)
+    return render_template("contact_messages.html", messages=messages)
 
 # ── Admin dashboard ─────────────────────────────────────────
 
@@ -433,4 +443,5 @@ def server_error(e):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
+
 
