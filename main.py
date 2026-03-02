@@ -7,6 +7,7 @@ import os
 import cloudinary
 import cloudinary.uploader
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
@@ -22,6 +23,7 @@ try:
     collection = db["items"]
     collection_gallery = db['gallery']
     collection_categories = db['category']
+    collection_contact=db['contact_us']
     print("[DB] Connected to MongoDB successfully.")
 except Exception as e:
     print(f"[DB ERROR] Could not connect to MongoDB: {e}")
@@ -82,14 +84,32 @@ def safe_object_id(id_str):
 
 # ── Public routes ───────────────────────────────────────────
 
-@app.route("/")
+@app.route("/",methods=["GET","POST"])
 def index():
     try:
         gallery = list(collection_gallery.find())
         categories = list(collection_categories.find())
+        if request.method=='POST':
+            name=request.form.get("name").strip()
+            email=request.form.get("email").strip()
+            phone=request.form.get("phone").strip()
+            message=request.form.get("message").strip()
+
+            if name and phone and message:
+                collection_contact.insert_one({
+                    "name": name,
+                    "email": email,
+                    "phone": phone,
+                    "message": message,
+                    "date": datetime.now()
+                })
+                flash("Message sent! We will get back to you soon.", "success")
+            else:
+                flash("Please fill all required fields.", "error")
+
     except Exception:
         gallery = []
-        categories = []  # FIX: was missing, caused crash
+        categories = []  
     return render_template("home.html", gallery=gallery, categories=categories)
 
 
@@ -102,7 +122,10 @@ def menu():
         items = []
         categories = []
     return render_template("menu.html", items=items, categories=categories)
-
+@app.route("/contact_messages")
+def contact_messages():
+    messages=list(collection_contact.find())
+    return render_template("contact_messages.html",messages=messages)
 
 # ── Admin dashboard ─────────────────────────────────────────
 
