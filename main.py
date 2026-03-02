@@ -7,8 +7,9 @@ import os
 import cloudinary
 import cloudinary.uploader
 from dotenv import load_dotenv
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
+IST = timezone(timedelta(hours=5, minutes=30))
 load_dotenv()
 
 app = Flask(__name__)
@@ -101,7 +102,7 @@ def index():
                     "email": email,
                     "phone": phone,
                     "message": message,
-                    "date": datetime.now()
+                    "date": datetime.now(IST)
                 })
                 flash("Message sent! We will get back to you soon.", "success")
             else:
@@ -432,3 +433,4 @@ def server_error(e):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
+
