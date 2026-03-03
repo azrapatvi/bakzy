@@ -1,62 +1,91 @@
-# Bakzy Restaurant Web App 🍽️
+# Bakzy Restaurant Web App 🍰
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-2.3-lightgrey?logo=flask&logoColor=black)
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?logo=mongodb&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-1DA1F2?logo=cloudinary&logoColor=white)
 
-A web application for a restaurant where users can view menu items, categories, and gallery images. Admins can manage menu items, categories, gallery images, and view contact messages. Built with **Flask**, **MongoDB**, and **Cloudinary** for image storage.
+A **modern, interactive web application for a bakery/restaurant** where users can browse menu items, filter by categories, select product sizes, manage quantities, and place orders via WhatsApp. Admins can manage products, categories, galleries, and view contact messages.  
+
+---
+
+## Live Preview 📸
+> Screenshots of the menu, cart drawer, and product lightbox can be added here to make your GitHub repo look professional.
 
 ---
 
 ## Features ✅
 
 ### Public Features
-- View **menu items** with images, sizes, and prices.
-- View **categories** and gallery images.
-- Contact form to send messages to the restaurant.
+- **Menu Browsing**: View all items with images, category badges, and descriptions.
+- **Category Tabs**: Filter products dynamically by category.
+- **Size Options**: Choose product sizes, with dynamic price display.
+- **Product Cards**: Hover effects, badges, zoom-in icons, and smooth UI animations.
+- **Lightbox Preview**: Click an item to view a larger image with name and category.
+- **Floating Cart Button**: Shows cart count and opens a cart drawer.
+- **Cart Drawer**:
+  - Increment/decrement item quantity.
+  - Remove items individually or clear the entire cart.
+  - Price calculation with subtotal and indication for “Price on request” items.
+- **WhatsApp Ordering**: Orders (including enquire items) can be sent directly via WhatsApp with formatted messages.
 
 ### Admin Features
-- **Admin login/logout** system.
-- Add, edit, and delete **menu items** with images and sizes.
-- Add, edit, and delete **categories** with images.
-- Add, edit, and delete **gallery images**.
-- View **contact messages** sent by users.
-- Images are stored securely on **Cloudinary**.
+- **Admin Login/Logout**: Secured admin access.
+- **Manage Products**:
+  - Add, edit, delete products.
+  - Upload multiple sizes per product with prices.
+  - Add product images using Cloudinary.
+- **Manage Categories**:
+  - Add, edit, delete categories.
+  - Assign products to categories.
+- **Gallery Management**:
+  - Add/edit/delete gallery images.
+- **Contact Form Messages**: View messages sent by users.
 
 ---
 
 ## Technologies Used 🛠️
 - **Backend:** Python, Flask  
-- **Database:** MongoDB  
-- **Image Hosting:** Cloudinary  
-- **Frontend:** HTML, CSS, Jinja2 templates  
+- **Database:** MongoDB (for products, categories, and messages)  
+- **Image Hosting:** Cloudinary (for product and gallery images)  
+- **Frontend:** HTML, CSS, Jinja2, JavaScript (interactive UI, cart, lightbox)  
+- **Fonts:** Playfair Display, Cormorant Garamond, DM Sans  
 
 ---
 
-## Admin Login 🛡️
+## Admin Login Credentials 🛡️
 - Username: `admin`  
 - Password: `admin`  
 
-You can change these in `main.py` if needed.
+> Can be customized in `main.py`.
 
 ---
 
 ## Folder Structure 📁
 ```
-├── main.py # Main Flask app
-├── templates/ # HTML templates
-├── static/ # CSS, JS, and images
-├── .env # Environment variables
+├── main.py # Flask backend
+├── templates/ # Jinja2 HTML templates (base.html, menu.html, etc.)
+├── static/ # CSS, JS, fonts, and other assets
+├── .env # Environment variables (MongoDB URI, Cloudinary keys)
 └── requirements.txt # Python dependencies
 ```
 
 ---
 
-## Notes 📝
-- Only images with extensions `png, jpg, jpeg, webp, gif` are allowed.
-- Make sure your MongoDB URI and Cloudinary credentials are correct.
-- For production, set `debug=False` in `main.py`.
-- Uses `flash` messages for success/error notifications.
+## UX Highlights 🎨
+- Smooth hover animations for product cards and images.
+- Size and price selection dynamically updates the UI.
+- Cart drawer with live total updates.
+- Enquire button style for items without a set price.
+- WhatsApp integration automatically formats orders.
+- Responsive design for mobile and desktop screens.
 
 ---
+
+## Notes 📝
+- Only image types allowed: `png, jpg, jpeg, webp, gif`.
+- Cart supports multiple items, quantities, and combinations of sizes.
+- “Price on request” items handled gracefully in cart and WhatsApp order.
+- Uses `flash` messages for success/error notifications (admin operations).
+- For production, set `debug=False` in `main.py`.
+
