@@ -5,7 +5,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?logo=mongodb&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-1DA1F2?logo=cloudinary&logoColor=white)
 
-A simple web application for a restaurant where users can view menu items, categories, and gallery images. Admins can manage menu items, categories, gallery images, and view contact messages. Built with **Flask**, **MongoDB**, and **Cloudinary** for image storage.
+A web application for a restaurant where users can view menu items, categories, and gallery images. Admins can manage menu items, categories, gallery images, and view contact messages. Built with **Flask**, **MongoDB**, and **Cloudinary** for image storage.
 
 ---
 
