@@ -9,10 +9,6 @@ A **modern, interactive web application for a bakery/restaurant** where users ca
 
 ---
 
-## Live Preview 📸
-> Screenshots of the menu, cart drawer, and product lightbox can be added here to make your GitHub repo look professional.
-
----
 
 ## Features ✅
 
