@@ -412,7 +412,7 @@ def admin_login():
         try:
             username = request.form.get("username", "")
             password = request.form.get("password", "")
-            if username == "admin" and password == "admin":
+            if username == "abc" and password == "abc":
                 session['username'] = username
                 session['logged_in'] = True
                 flash("Logged in successfully!", "success")
@@ -443,5 +443,6 @@ def server_error(e):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
+
 
 
