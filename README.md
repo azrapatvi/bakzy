@@ -49,11 +49,6 @@ A **modern, interactive web application for a bakery/restaurant** where users ca
 
 ---
 
-## Admin Login Credentials 🛡️
-- Username: `admin`  
-- Password: `admin`  
-
-> Can be customized in `main.py`.
 
 ---
 
